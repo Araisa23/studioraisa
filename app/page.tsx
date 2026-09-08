@@ -4,7 +4,6 @@ import { Hero } from '@/components/hero'
 import { About } from '@/components/about'
 import { Skills } from '@/components/skills'
 import { FeaturedProject } from '@/components/featured-project'
-import { CaseStudy } from '@/components/case-study'
 import { WebProjects } from '@/components/web-projects'
 import { Testing } from '@/components/testing'
 import { GraphicDesign } from '@/components/graphic-design'
@@ -21,7 +20,6 @@ export default function Page() {
         <About />
         <Skills />
         <FeaturedProject />
-        <CaseStudy />
         <WebProjects />
         <Testing />
         <GraphicDesign />

@@ -24,7 +24,7 @@ export function Testing() {
     <section id="testing" className="border-y border-border bg-secondary/40">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
         <SectionHeading
-          index="06"
+          index="05"
           eyebrow="Software Testing"
           title="Testing with purpose"
           description={testingNote}

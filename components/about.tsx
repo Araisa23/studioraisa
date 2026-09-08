@@ -19,17 +19,6 @@ export function About() {
               {p}
             </p>
           ))}
-
-          <div className="grid grid-cols-2 gap-3 pt-2 sm:grid-cols-4">
-            {about.highlights.map((h) => (
-              <div key={h.label} className="rounded-lg border border-border bg-card p-4">
-                <p className="font-display text-xs uppercase tracking-widest text-muted-foreground">
-                  {h.label}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-pretty">{h.value}</p>
-              </div>
-            ))}
-          </div>
         </Reveal>
 
         {/* Education / status card */}

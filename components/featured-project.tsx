@@ -6,9 +6,11 @@ import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { useLightbox } from '@/components/lightbox'
 import { featuredProject as p } from '@/lib/portfolio-data'
+import { useState } from 'react'
 
 export function FeaturedProject() {
   const { open } = useLightbox()
+  const [activeStep, setActiveStep] = useState<number | null>(null)
 
   return (
     <section id="featured" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
@@ -68,16 +70,15 @@ export function FeaturedProject() {
             </ul>
           </div>
 
-          <div className="flex flex-wrap gap-3 pt-1">
-            <ProjectLink href={p.links.live} label="View Live" icon={ExternalLink} primary />
-            <ProjectLink href={p.links.code} label="View Code" icon={GithubIcon} />
-          </div>
         </Reveal>
 
         {/* Gallery */}
         <Reveal delay={120}>
           <p className="font-display text-xs uppercase tracking-widest text-muted-foreground">
-            Screenshots
+            Documentation & Gallery
+          </p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Berikut beberapa dokumentasi dan tangkapan layar dari proyek ini.
           </p>
           <div className="mt-3 grid grid-cols-2 gap-3">
             {p.gallery.map((img, i) => (
@@ -111,14 +112,39 @@ export function FeaturedProject() {
           Metode Pengembangan · {p.method.name}
         </p>
         <ol className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {p.method.steps.map((step, i) => (
-            <li key={step} className="relative rounded-lg border border-border bg-card p-4">
-              <span className="font-display text-sm font-bold text-primary">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <p className="mt-1 text-sm font-medium text-pretty">{step}</p>
-            </li>
-          ))}
+          {p.method.steps.map((step, i) => {
+            const isActive = activeStep === i
+            return (
+              <li key={step.title}>
+                <button
+                  type="button"
+                  onClick={() => setActiveStep(isActive ? null : i)}
+                  aria-expanded={isActive}
+                  className={`w-full rounded-lg border p-4 text-left transition-colors ${
+                    isActive
+                      ? 'border-primary bg-accent/60'
+                      : 'border-border bg-card hover:border-primary/40'
+                  }`}
+                >
+                  <span className="font-display text-sm font-bold text-primary">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <p className="mt-1 text-sm font-medium text-pretty">{step.title}</p>
+
+                  <div
+                    className="grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out"
+                    style={{ gridTemplateRows: isActive ? '1fr' : '0fr' }}
+                  >
+                    <div className="min-h-0">
+                      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              </li>
+            )
+          })}
         </ol>
       </Reveal>
 

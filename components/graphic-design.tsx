@@ -15,51 +15,73 @@ const heightBySize: Record<string, string> = {
 }
 
 export function GraphicDesign() {
-  const [active, setActive] = useState(designCategories[0])
+  const [active, setActive] = useState<string[]>([]) // kosong = "Semua"
   const { open } = useLightbox()
+
+  function toggleCategory(cat: string) {
+    if (cat === designCategories[0]) {
+      setActive([])
+      return
+    }
+    setActive((prev) =>
+      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat],
+    )
+  }
 
   const filtered = useMemo(
     () =>
-      active === designCategories[0]
+      active.length === 0
         ? designWorks
-        : designWorks.filter((w) => w.category === active),
+        : designWorks.filter((w) => w.categories.some((c) => active.includes(c))),
     [active],
   )
 
-  const withImages = filtered.filter((w) => w.src)
+  // ⬅️ PERUBAHAN 1: hanya item bergambar (bukan video) yang masuk ke lightbox
+  const withImages = filtered.filter((w) => w.src && !w.videoUrl)
 
   return (
     <section id="design" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
       <SectionHeading
-        index="07"
+        index="06"
         eyebrow="Graphic Design"
         title="Visual work"
-        description="Kumpulan karya desain grafis. Placeholder di bawah dapat diganti dengan karya asli Anda melalui file config."
+        description="Kumpulan karya desain grafis."
       />
 
       {/* Filters */}
       <Reveal className="mt-8 flex flex-wrap gap-2">
-        {designCategories.map((cat) => (
-          <button
-            key={cat}
-            type="button"
-            onClick={() => setActive(cat)}
-            className={cn(
-              'rounded-full border px-4 py-1.5 text-sm font-medium transition-colors',
-              active === cat
-                ? 'border-foreground bg-foreground text-background'
-                : 'border-border bg-card text-muted-foreground hover:text-foreground',
-            )}
-          >
-            {cat}
-          </button>
-        ))}
+        {designCategories.map((cat) => {
+          const isActive = cat === designCategories[0] ? active.length === 0 : active.includes(cat)
+          return (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => toggleCategory(cat)}
+              aria-pressed={isActive}
+              className={cn(
+                'rounded-full border px-4 py-1.5 text-sm font-medium transition-colors',
+                isActive
+                  ? 'border-foreground bg-foreground text-background'
+                  : 'border-border bg-card text-muted-foreground hover:text-foreground',
+              )}
+            >
+              {cat}
+            </button>
+          )
+        })}
       </Reveal>
+
+      {active.length > 0 && (
+        <p className="mt-3 text-xs text-muted-foreground">
+          Menampilkan: {active.join(', ')}
+        </p>
+      )}
 
       {/* Masonry via CSS columns */}
       <div className="mt-8 columns-1 gap-4 sm:columns-2 lg:columns-3 [&>*]:mb-4">
         {filtered.map((work, i) => {
-          const clickable = Boolean(work.src)
+          // ⬅️ PERUBAHAN 2: item video tidak dianggap "clickable" untuk lightbox
+          const clickable = Boolean(work.src) && !work.videoUrl
           return (
             <Reveal key={`${work.title}-${i}`} delay={(i % 3) * 60} className="break-inside-avoid">
               <button
@@ -79,7 +101,16 @@ export function GraphicDesign() {
                 )}
               >
                 <div className={cn('w-full', heightBySize[work.size ?? 'normal'])}>
-                  {work.src ? (
+                  {/* ⬅️ PERUBAHAN 3: render iframe YouTube kalau ada videoUrl */}
+                  {work.videoUrl ? (
+                    <iframe
+                      src={work.videoUrl}
+                      title={work.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="h-full w-full"
+                    />
+                  ) : work.src ? (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
                       src={work.src || '/placeholder.svg'}
@@ -90,10 +121,17 @@ export function GraphicDesign() {
                     <PlaceholderThumb label={work.title} />
                   )}
                 </div>
-                <div className="flex items-center justify-between gap-2 border-t border-border px-4 py-3">
+                <div className="flex items-start justify-between gap-2 border-t border-border px-4 py-3">
                   <span className="truncate text-sm font-medium">{work.title}</span>
-                  <span className="shrink-0 rounded-full bg-accent px-2 py-0.5 text-xs text-accent-foreground">
-                    {work.category}
+                  <span className="flex shrink-0 flex-wrap justify-end gap-1">
+                    {work.categories.map((c) => (
+                      <span
+                        key={c}
+                        className="rounded-full bg-accent px-2 py-0.5 text-xs text-accent-foreground"
+                      >
+                        {c}
+                      </span>
+                    ))}
                   </span>
                 </div>
               </button>

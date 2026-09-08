@@ -1,6 +1,6 @@
 import { ArrowUpRight, Download, MapPin } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
-import { profile, contact, featuredProject } from '@/lib/portfolio-data'
+import { profile, contact } from '@/lib/portfolio-data'
 
 export function Hero() {
   return (
@@ -46,8 +46,12 @@ export function Hero() {
                 View my work
                 <ArrowUpRight className="h-4 w-4" />
               </a>
+
               <a
                 href={contact.cvUrl}
+                download={`CV-${profile.fullName}.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-3 text-sm font-medium transition-colors hover:bg-secondary"
               >
                 <Download className="h-4 w-4" />
@@ -65,39 +69,54 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Right — browser mockup */}
-          <Reveal delay={160} className="relative">
-            <div className="relative mx-auto max-w-lg">
-              <div className="overflow-hidden rounded-xl border border-border bg-card shadow-[0_24px_60px_-24px_rgba(20,30,60,0.25)]">
-                {/* browser chrome */}
-                <div className="flex items-center gap-2 border-b border-border bg-secondary/60 px-4 py-3">
-                  <span className="h-3 w-3 rounded-full bg-muted-foreground/30" />
-                  <span className="h-3 w-3 rounded-full bg-muted-foreground/30" />
-                  <span className="h-3 w-3 rounded-full bg-muted-foreground/30" />
-                  <span className="ml-3 flex-1 truncate rounded-md bg-background px-3 py-1 text-xs text-muted-foreground">
-                    presensi.polibanjarmasin.ac.id
-                  </span>
-                </div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={featuredProject.heroMockup || '/placeholder.svg'}
-                  alt="Cuplikan sistem presensi berbasis web"
-                  className="aspect-[16/11] w-full object-cover object-top"
-                />
+          {/* Right — 3D Pop-Out Photo Frame */}
+          <Reveal delay={160} className="relative flex justify-center">
+            <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 via-card to-background border border-border shadow-2xl flex items-center justify-center">
+              {/* Layer 1: Tekstur / Pattern Latar Belakang */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary),0.15)_0,transparent_100%)]" />
+
+              {/* Layer 2: Repeating Typography Pattern (Aesthetic Outline & Shadow) */}
+              <div className="absolute inset-0 flex flex-col justify-between overflow-hidden opacity-25 select-none pointer-events-none py-2">
+                {Array.from({ length: 8 }).map((_, i) => (
+                  <p
+                    key={i}
+                    className="font-display text-xl sm:text-6xl font-black uppercase tracking-widest whitespace-nowrap text-transparent"
+                    style={{
+                      WebkitTextStroke: '1px var(--foreground)', // Outline teks mengikuti tema
+                      filter: 'drop-shadow(2px 3px 0px rgba(72, 146, 236, 0.8))', // Efek bayangan warna (bisa ganti hex warna favoritmu)
+                      marginLeft: `${(i % 4) * -25}px`, // Efek pergeseran selang-seling (staggered)
+                    }}
+                  >
+                    PORTOFOLIOPORTOFOLIOPORTOFOLIOPORTOFOLIO
+                  </p>
+                ))}
               </div>
 
-              {/* floating tag */}
-              <div className="absolute -bottom-5 -left-5 hidden rounded-lg border border-border bg-card px-4 py-3 shadow-lg sm:block">
-                <p className="font-display text-xs uppercase tracking-widest text-muted-foreground">
-                  Featured
+              {/* Layer 3: Foto Diri */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/profile-raisa.png"
+                alt={profile.fullName}
+                className="relative z-10 h-full w-full object-contain object-bottom transition-transform duration-500 hover:scale-105"
+              />
+
+              {/* Layer 4: Overlay Gradient Halus di Bagian Bawah */}
+              <div className="absolute inset-x-0 bottom-0 z-20 h-24 bg-gradient-to-t from-background via-background/40 to-transparent" />
+
+              {/* Layer 5: Floating Badge Tag */}
+              <div className="absolute bottom-4 left-4 z-30 rounded-xl border border-border bg-card/80 backdrop-blur-md px-4 py-2.5 shadow-lg">
+                <p className="text-xs font-semibold text-foreground">
+                  {profile.fullName}
                 </p>
-                <p className="text-sm font-semibold">Attendance System</p>
+                <p className="font-display text-[10px] uppercase tracking-widest text-primary font-bold">
+                  {profile.degree}
+                </p>
               </div>
             </div>
           </Reveal>
         </div>
 
-        {/* role marquee-ish tags */}
+        {/* Role tags */}
         <Reveal delay={200} className="mt-16 flex flex-wrap items-center gap-2 border-t border-border pt-6">
           <span className="mr-2 font-display text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Focus

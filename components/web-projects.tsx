@@ -9,7 +9,7 @@ export function WebProjects() {
   return (
     <section id="web" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
       <SectionHeading
-        index="05"
+        index="04"
         eyebrow="Web Projects"
         title="Things I've built for the browser"
       />
@@ -54,10 +54,6 @@ export function WebProjects() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-5 flex gap-2">
-                  <SmallLink href={proj.live} label="View Live" icon={ExternalLink} />
-                  <SmallLink href={proj.code} label="View Code" icon={GithubIcon} />
-                </div>
               </div>
             </article>
           </Reveal>
