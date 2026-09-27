@@ -40,13 +40,8 @@ export function GraphicDesign() {
   const withImages = filtered.filter((w) => w.src && !w.videoUrl)
 
   return (
-    <section id="design" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-      <SectionHeading
-        index="06"
-        eyebrow="Graphic Design"
-        title="Visual work"
-        description="Kumpulan karya desain grafis."
-      />
+    <section id="design" className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading title="Graphic Design" />
 
       {/* Filters */}
       <Reveal className="mt-8 flex flex-wrap gap-2">

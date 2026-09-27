@@ -21,14 +21,9 @@ function StatusBadge({ status }: { status: 'PASS' | 'FAILED' }) {
 
 export function Testing() {
   return (
-    <section id="testing" className="border-y border-border bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <SectionHeading
-          index="05"
-          eyebrow="Software Testing"
-          title="Testing with purpose"
-          description={testingNote}
-        />
+    <section id="testing">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading title="Software Testing" description={testingNote} />
 
         {/* Desktop table */}
         <Reveal className="mt-10 hidden overflow-hidden rounded-xl border border-border bg-card md:block">

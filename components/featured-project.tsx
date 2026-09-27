@@ -13,13 +13,12 @@ export function FeaturedProject() {
   const [activeStep, setActiveStep] = useState<number | null>(null)
 
   return (
-    <section id="featured" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-      <SectionHeading
-        index="03"
-        eyebrow="Featured Project"
-        title={p.title}
-        description={p.subtitle}
-      />
+    <section id="featured" className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading title="Featured Project" description={p.subtitle} />
+
+      <Reveal delay={40} className="mt-4">
+        <h3 className="font-display text-xl font-bold leading-snug text-balance sm:text-2xl">{p.title}</h3>
+      </Reveal>
 
       <div className="mt-6 flex flex-wrap items-center gap-2">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
@@ -28,8 +27,7 @@ export function FeaturedProject() {
         </span>
       </div>
 
-      {/* Overview + gallery */}
-      <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div className="glass-panel mt-10 grid gap-10 rounded-3xl p-6 sm:p-8 lg:grid-cols-[1fr_1fr]">
         <Reveal className="space-y-6">
           <p className="text-pretty leading-relaxed text-foreground/80">{p.description}</p>
 

@@ -1,5 +1,6 @@
-import { ArrowUpRight, Download, MapPin } from 'lucide-react'
+import { ArrowUpRight, Download, MapPin, Sparkles } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
+import { HeroTyping } from '@/components/hero-typing'
 import { profile, contact } from '@/lib/portfolio-data'
 
 export function Hero() {
@@ -7,11 +8,10 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="grid-backdrop absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black,transparent_75%)]" aria-hidden="true" />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pb-24 lg:pt-40">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-          {/* Left — copy */}
-          <div>
-            <Reveal className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted-foreground">
+      <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-28 sm:px-6 sm:pt-32 lg:px-8 lg:pb-24 lg:pt-36">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+          <div className="lg:col-span-7">
+            <Reveal className="mb-5 inline-flex items-center gap-2 rounded-full glass-panel px-3.5 py-1.5 font-mono text-xs text-primary">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
@@ -20,111 +20,118 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={60}>
-              <p className="font-display text-lg text-muted-foreground">
-                Hi, I&apos;m {profile.shortName}
-              </p>
-              <h1 className="mt-2 font-display text-4xl font-bold leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
-                Fresh Graduate in{' '}
-                <span className="text-primary">Informatics Engineering</span>
+              <h1 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">
+                Creative tech
+                <br />
+                <HeroTyping />
               </h1>
             </Reveal>
 
             <Reveal delay={120}>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-pretty text-foreground/80">
-                {profile.heroHeadline}
-              </p>
-              <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+              <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {profile.heroDescription}
               </p>
             </Reveal>
 
-            <Reveal delay={180} className="mt-8 flex flex-wrap items-center gap-3">
+            <Reveal delay={160} className="mt-5 flex flex-wrap gap-2">
+              <span className="glass-panel flex items-center gap-1.5 rounded-lg px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300">
+                IPK {profile.gpa}
+              </span>
+              <span className="glass-panel rounded-lg px-3 py-1 text-xs font-medium text-violet-700">
+                {profile.status}
+              </span>
+              <span className="glass-panel rounded-lg px-3 py-1 text-xs font-medium text-primary">
+                {profile.university}
+              </span>
+            </Reveal>
+
+            <Reveal delay={200} className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href="#featured"
-                className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary via-blue-600 to-violet-600 px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/20 transition-transform hover:scale-105"
               >
+                <Sparkles className="h-4 w-4" />
                 View my work
-                <ArrowUpRight className="h-4 w-4" />
               </a>
-
               <a
                 href={contact.cvUrl}
                 download={`CV-${profile.fullName}.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-3 text-sm font-medium transition-colors hover:bg-secondary"
+                className="glass-panel inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold transition-colors hover:bg-secondary/80"
               >
-                <Download className="h-4 w-4" />
+                <Download className="h-4 w-4 text-primary" />
                 Download CV
               </a>
             </Reveal>
 
-            <Reveal delay={240} className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+            <Reveal delay={240} className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-4 w-4" />
+                <MapPin className="h-4 w-4 text-primary" />
                 {profile.location}
               </span>
-              <span className="hidden h-4 w-px bg-border sm:block" aria-hidden="true" />
-              <span>IPK {profile.gpa} · {profile.university}</span>
             </Reveal>
           </div>
 
-          {/* Right — 3D Pop-Out Photo Frame */}
-          <Reveal delay={160} className="relative flex justify-center">
-            <div className="relative w-full max-w-md aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 via-card to-background border border-border shadow-2xl flex items-center justify-center">
-              {/* Layer 1: Tekstur / Pattern Latar Belakang */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary),0.15)_0,transparent_100%)]" />
-
-              {/* Layer 2: Repeating Typography Pattern (Aesthetic Outline & Shadow) */}
-              <div className="absolute inset-0 flex flex-col justify-between overflow-hidden opacity-25 select-none pointer-events-none py-2">
-                {Array.from({ length: 8 }).map((_, i) => (
-                  <p
-                    key={i}
-                    className="font-display text-xl sm:text-6xl font-black uppercase tracking-widest whitespace-nowrap text-transparent"
-                    style={{
-                      WebkitTextStroke: '1px var(--foreground)', // Outline teks mengikuti tema
-                      filter: 'drop-shadow(2px 3px 0px rgba(72, 146, 236, 0.8))', // Efek bayangan warna (bisa ganti hex warna favoritmu)
-                      marginLeft: `${(i % 4) * -25}px`, // Efek pergeseran selang-seling (staggered)
-                    }}
-                  >
-                    PORTOFOLIOPORTOFOLIOPORTOFOLIOPORTOFOLIO
-                  </p>
-                ))}
+          <Reveal delay={160} className="lg:col-span-5">
+            <div className="glass-panel animate-float relative overflow-hidden rounded-3xl p-5 shadow-xl sm:p-6">
+              <div className="relative mx-auto aspect-[4/5] max-w-sm overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/15 via-card to-background">
+                <div className="absolute inset-0 flex flex-col justify-between overflow-hidden py-2 opacity-20 select-none pointer-events-none">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <p
+                      key={i}
+                      className="font-display text-lg font-black uppercase tracking-widest whitespace-nowrap text-transparent sm:text-3xl"
+                      style={{
+                        WebkitTextStroke: '1px var(--foreground)',
+                        marginLeft: `${(i % 3) * -20}px`,
+                      }}
+                    >
+                      PORTFOLIO PORTFOLIO
+                    </p>
+                  ))}
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={profile.photo}
+                  alt={profile.fullName}
+                  className="relative z-10 h-full w-full object-contain object-bottom transition-transform duration-500 hover:scale-105"
+                />
+                <div className="absolute inset-x-0 bottom-0 z-20 h-20 bg-gradient-to-t from-card via-card/50 to-transparent" />
               </div>
 
-              {/* Layer 3: Foto Diri */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/profile-raisa.png"
-                alt={profile.fullName}
-                className="relative z-10 h-full w-full object-contain object-bottom transition-transform duration-500 hover:scale-105"
-              />
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                <div className="rounded-2xl border border-border bg-background/80 p-3.5">
+                  <span className="text-2xl font-black text-amber-600">{profile.gpa}</span>
+                  <p className="text-[11px] font-medium text-muted-foreground">IPK</p>
+                </div>
+                <div className="rounded-2xl border border-border bg-background/80 p-3.5">
+                  <span className="text-2xl font-black text-primary">2+</span>
+                  <p className="text-[11px] font-medium text-muted-foreground">Yrs org experience</p>
+                </div>
+              </div>
 
-              {/* Layer 4: Overlay Gradient Halus di Bagian Bawah */}
-              <div className="absolute inset-x-0 bottom-0 z-20 h-24 bg-gradient-to-t from-background via-background/40 to-transparent" />
-
-              {/* Layer 5: Floating Badge Tag */}
-              <div className="absolute bottom-4 left-4 z-30 rounded-xl border border-border bg-card/80 backdrop-blur-md px-4 py-2.5 shadow-lg">
-                <p className="text-xs font-semibold text-foreground">
-                  {profile.fullName}
-                </p>
-                <p className="font-display text-[10px] uppercase tracking-widest text-primary font-bold">
-                  {profile.degree}
-                </p>
+              <div className="mt-4">
+                <p className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground">Target roles</p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {profile.roles.slice(0, 4).map((role) => (
+                    <span
+                      key={role}
+                      className="rounded-lg border border-primary/15 bg-primary/5 px-2.5 py-1 text-xs font-medium text-primary"
+                    >
+                      {role}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </Reveal>
         </div>
 
-        {/* Role tags */}
-        <Reveal delay={200} className="mt-16 flex flex-wrap items-center gap-2 border-t border-border pt-6">
-          <span className="mr-2 font-display text-xs uppercase tracking-[0.25em] text-muted-foreground">
-            Focus
-          </span>
+        <Reveal delay={280} className="mt-14 flex flex-wrap items-center gap-2 border-t border-border/80 pt-6">
           {profile.roles.map((role) => (
             <span
               key={role}
-              className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground/80"
+              className="glass-panel rounded-full px-3 py-1 text-sm text-foreground/85"
             >
               {role}
             </span>

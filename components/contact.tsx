@@ -31,15 +31,17 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+    <section id="contact" className="mx-auto max-w-6xl px-4 pb-8 sm:px-6 lg:px-8">
       <SectionHeading
-        index="08"
-        eyebrow="Contact"
-        title="Let's work together."
+        title={
+          <>
+            Contact — <span className="text-gradient-creative">let&apos;s build.</span>
+          </>
+        }
         description={contact.workingTogether}
       />
 
-      <div className="mt-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="glass-panel mt-10 grid gap-8 rounded-3xl p-6 sm:p-10 lg:grid-cols-[0.9fr_1.1fr]">
         {/* Channels */}
         <Reveal className="space-y-3">
           {channels.map((c) => {

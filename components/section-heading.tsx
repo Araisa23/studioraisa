@@ -3,8 +3,6 @@ import { cn } from '@/lib/utils'
 import { Reveal } from '@/components/reveal'
 
 type SectionHeadingProps = {
-  index: string
-  eyebrow: string
   title: ReactNode
   description?: ReactNode
   align?: 'left' | 'center'
@@ -12,8 +10,6 @@ type SectionHeadingProps = {
 }
 
 export function SectionHeading({
-  index,
-  eyebrow,
   title,
   description,
   align = 'left',
@@ -22,23 +18,18 @@ export function SectionHeading({
   return (
     <Reveal
       className={cn(
-        'flex flex-col gap-3',
+        'flex flex-col gap-2',
         align === 'center' && 'items-center text-center',
         className,
       )}
     >
-      <div className="flex items-center gap-3 font-display text-xs font-medium uppercase tracking-[0.25em] text-primary">
-        <span className="tabular-nums">{index}</span>
-        <span className="h-px w-8 bg-primary/40" aria-hidden="true" />
-        <span className="text-muted-foreground">{eyebrow}</span>
-      </div>
-      <h2 className="font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl md:text-[2.75rem] md:leading-[1.05]">
+      <h2 className="font-display text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">
         {title}
       </h2>
       {description && (
         <p
           className={cn(
-            'max-w-2xl text-pretty leading-relaxed text-muted-foreground',
+            'max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base',
             align === 'center' && 'mx-auto',
           )}
         >

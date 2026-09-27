@@ -7,12 +7,8 @@ import { webProjects } from '@/lib/portfolio-data'
 
 export function WebProjects() {
   return (
-    <section id="web" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-      <SectionHeading
-        index="04"
-        eyebrow="Web Projects"
-        title="Things I've built for the browser"
-      />
+    <section id="web" className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading title="Web Projects" />
 
       <div className="mt-12 grid gap-6 md:grid-cols-2">
         {webProjects.map((proj, i) => (

@@ -1,4 +1,5 @@
 import { LightboxProvider } from '@/components/lightbox'
+import { AmbientBackground } from '@/components/ambient-background'
 import { SiteNav } from '@/components/site-nav'
 import { Hero } from '@/components/hero'
 import { About } from '@/components/about'
@@ -14,8 +15,9 @@ import { SiteFooter } from '@/components/site-footer'
 export default function Page() {
   return (
     <LightboxProvider>
+      <AmbientBackground />
       <SiteNav />
-      <main>
+      <main className="relative z-10 space-y-20 sm:space-y-28">
         <Hero />
         <About />
         <Skills />

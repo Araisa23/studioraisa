@@ -21,20 +21,15 @@ export function BeyondCode() {
   }
 
   return (
-    <section id="experience" className="border-y border-border bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <SectionHeading
-          index="07"
-          eyebrow="Beyond Code"
-          title="Organizational experience"
-          description={beyondCode.intro}
-        />
+    <section id="experience">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <SectionHeading title="Experience" description={beyondCode.intro} />
 
         {/* Timeline cards */}
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {beyondCode.events.map((ev, i) => (
             <Reveal key={ev.code} delay={i * 80}>
-              <article className="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/40">
+              <article className="glass-panel group flex h-full flex-col rounded-2xl p-6">
                 <div className="flex items-center justify-between">
                   <span className="font-display text-xs font-bold uppercase tracking-[0.2em] text-primary">
                     {ev.code}
