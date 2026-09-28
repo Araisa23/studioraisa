@@ -80,13 +80,13 @@ export function Hero() {
                   {Array.from({ length: 6 }).map((_, i) => (
                     <p
                       key={i}
-                      className="font-display text-lg font-black uppercase tracking-widest whitespace-nowrap text-transparent sm:text-3xl"
+                      className="font-display text-lg font-black uppercase tracking-widest whitespace-nowrap text-transparent sm:text-6xl"
                       style={{
-                        WebkitTextStroke: '1px var(--foreground)',
+                        WebkitTextStroke: '2px var(--foreground)',
                         marginLeft: `${(i % 3) * -20}px`,
                       }}
                     >
-                      PORTFOLIO PORTFOLIO
+                      PORTOFOLIOPORTOFOLIOPORTOFOLIO
                     </p>
                   ))}
                 </div>
