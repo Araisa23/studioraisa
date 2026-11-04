@@ -27,7 +27,7 @@ export function About() {
             ))}
             <p className="pt-2 text-sm font-semibold text-foreground">{profile.university}</p>
             <p className="text-xs text-muted-foreground">
-              {profile.degree} · {profile.major} · Yudisium {profile.yudisiumDate}
+              {profile.degree} · {profile.major} · Wisuda {profile.graduationDate}
             </p>
           </div>
         </Reveal>
@@ -36,10 +36,14 @@ export function About() {
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-violet-500/20 bg-violet-500/10 text-violet-600">
             <Palette className="h-6 w-6" />
           </span>
-          <h3 className="mt-4 text-base font-bold">MedInfo & design</h3>
-          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-            Aktif di divisi media & informasi organisasi — desain feed, banner acara, dan konten visual
-            promosi.
+          <h3 className="mt-4 text-base font-bold">Pengalaman Organisasi</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Aktif selama dua tahun di Divisi Media dan Informasi Himpunan Mahasiswa
+            Elektro (HME) Poliban. Berkontribusi dalam membuat desain, konten visual,
+            dokumentasi, dan publikasi untuk berbagai kegiatan organisasi.
+            Selain itu, saya juga beberapa kali terlibat sebagai panitia, sekretaris
+            acara, dan koordinator seksi, sehingga terbiasa bekerja sama dalam tim,
+            mengatur kebutuhan kegiatan, dan berkoordinasi dengan anggota lainnya.
           </p>
         </Reveal>
 
@@ -47,9 +51,14 @@ export function About() {
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-pink-500/20 bg-pink-500/10 text-pink-600">
             <Users className="h-6 w-6" />
           </span>
-          <h3 className="mt-4 text-base font-bold">Leadership</h3>
-          <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-            Pengalaman koordinator, sekretaris acara, dan peran pelaksana di berbagai kepanitiaan kampus.
+          <h3 className="mt-4 text-base font-bold">Pengalaman Magang</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Menjalani magang selama 6 bulan di HAFECS (Highly Functioning Education Consulting
+            Services) lembaga yang berada di bawah naungan Hasnur Centre berposisi sebagai 
+            Admin & Social Media Specialist program TLC (Teaching Learning Certification).
+            Selama magang, saya membantu mengelola data administrasi, membuat dan menjadwalkan konten
+            media sosial, memantau engagement, serta mendukung kebutuhan konten dan
+            berbagai kegiatan bersama tim.
           </p>
         </Reveal>
 
